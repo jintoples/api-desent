@@ -11,7 +11,7 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-func NewRouter(bookController controller.BookController) *httprouter.Router {
+func NewRouter(bookController controller.BookController) http.Handler {
 	router := httprouter.New()
 
 	router.GET("/ping", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {

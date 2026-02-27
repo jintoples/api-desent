@@ -6,7 +6,6 @@ import (
 	"github.com/jintoples/rest-desent/app"
 	"github.com/jintoples/rest-desent/controller"
 	"github.com/jintoples/rest-desent/helper"
-	"github.com/jintoples/rest-desent/middleware"
 	"github.com/jintoples/rest-desent/repository"
 	"github.com/jintoples/rest-desent/service"
 
@@ -26,7 +25,7 @@ func main() {
 
 	server := http.Server{
 		Addr:    "0.0.0.0:8080",
-		Handler: middleware.NewAuthMiddleware(router),
+		Handler: router,
 	}
 
 	err := server.ListenAndServe()
