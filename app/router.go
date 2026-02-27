@@ -21,7 +21,7 @@ func NewRouter(bookController controller.BookController) http.Handler {
 		helper.WriteToResponseBody(w, webResponse)
 	})
 
-	router.GET("/ping/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	router.POST("/ping/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		webResponse := web.GeneralResponse{
 			Success: true,
 		}
