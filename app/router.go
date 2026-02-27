@@ -26,7 +26,9 @@ func NewRouter(bookController controller.BookController) http.Handler {
 		decoder := json.NewDecoder(r.Body)
 		var request map[string]string
 		err := decoder.Decode(&request)
-		helper.PanicIfError(err)
+		if err != nil {
+			request = map[string]string{}
+		}
 
 		helper.WriteToResponseBody(w, request)
 	})
