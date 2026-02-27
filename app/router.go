@@ -21,18 +21,18 @@ func NewRouter(bookController controller.BookController) http.Handler {
 		helper.WriteToResponseBody(w, webResponse)
 	})
 
-	router.GET("/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	router.GET("/ping/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		webResponse := web.GeneralResponse{
 			Success: true,
 		}
 		helper.WriteToResponseBody(w, webResponse)
 	})
 
-	router.GET("/books", bookController.FindAll)
-	router.POST("/books", bookController.Create)
-	router.GET("/books/:id", bookController.FindById)
-	router.PUT("/books/:id", bookController.Update)
-	router.DELETE("/books/:id", bookController.Delete)
+	router.GET("/ping/books", bookController.FindAll)
+	router.POST("/ping/books", bookController.Create)
+	router.GET("/ping/books/:id", bookController.FindById)
+	router.PUT("/ping/books/:id", bookController.Update)
+	router.DELETE("/ping/books/:id", bookController.Delete)
 
 	router.PanicHandler = exception.ErrorHandler
 
