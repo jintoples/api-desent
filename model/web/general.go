@@ -7,6 +7,5 @@ type WebResponse struct {
 }
 
 type GeneralResponse struct {
-	Success bool        `json:"success"`
-	Data    interface{} `json:"data"`
+	Success bool `json:"success"`
 }
