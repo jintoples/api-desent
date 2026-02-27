@@ -14,7 +14,7 @@ import (
 func NewRouter(bookController controller.BookController) http.Handler {
 	router := httprouter.New()
 
-	router.GET("ping/ping", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+	router.GET("/ping/ping", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		webResponse := web.WebResponse{
 			Code:   200,
 			Status: "Ok",
