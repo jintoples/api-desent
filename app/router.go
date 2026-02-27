@@ -24,7 +24,7 @@ func NewRouter(bookController controller.BookController) http.Handler {
 
 	router.POST("/ping/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		decoder := json.NewDecoder(r.Body)
-		var request map[string]string
+		var request interface{}
 		err := decoder.Decode(&request)
 		if err != nil {
 			request = map[string]string{}
