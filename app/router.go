@@ -1,6 +1,7 @@
 package app
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/jintoples/rest-desent/controller"
@@ -22,8 +23,12 @@ func NewRouter(bookController controller.BookController) http.Handler {
 	})
 
 	router.POST("/ping/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+		decoder := json.NewDecoder(r.Body)
+		var request map[string]string
+		err := decoder.Decode(&request)
+		helper.PanicIfError(err)
 
-		helper.WriteToResponseBody(w, map[string]string{})
+		helper.WriteToResponseBody(w, request)
 	})
 
 	router.GET("/ping/books", bookController.FindAll)
