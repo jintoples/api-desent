@@ -2,7 +2,6 @@ package main
 
 import (
 	"net/http"
-	"os"
 
 	"github.com/jintoples/rest-desent/app"
 	"github.com/jintoples/rest-desent/controller"
@@ -26,7 +25,7 @@ func main() {
 	router := app.NewRouter(bookController)
 
 	server := http.Server{
-		Addr:    "0.0.0.0:" + os.Getenv("PORT"),
+		Addr:    "0.0.0.0:8080",
 		Handler: middleware.NewAuthMiddleware(router),
 	}
 
