@@ -24,13 +24,17 @@ func NewRouter(bookController controller.BookController) http.Handler {
 
 	router.POST("/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
 		decoder := json.NewDecoder(r.Body)
-		var request interface{}
+		var request map[string]interface{}
 		err := decoder.Decode(&request)
 		if err != nil {
-			request = map[string]string{}
+			request = map[string]interface{}{}
 		}
 
-		helper.WriteToResponseBody(w, request)
+		webResponse := web.GeneralResponse{
+			Success: true,
+			Data:    request,
+		}
+		helper.WriteToResponseBody(w, webResponse)
 	})
 
 	router.GET("/books", bookController.FindAll)
