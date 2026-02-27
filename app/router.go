@@ -22,9 +22,8 @@ func NewRouter(bookController controller.BookController) http.Handler {
 	})
 
 	router.POST("/ping/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		var webResponse interface{}
 
-		helper.WriteToResponseBody(w, webResponse)
+		helper.WriteToResponseBody(w, map[string]string{})
 	})
 
 	router.GET("/ping/books", bookController.FindAll)
