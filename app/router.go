@@ -15,19 +15,15 @@ func NewRouter(bookController controller.BookController) http.Handler {
 	router := httprouter.New()
 
 	router.GET("/ping/ping", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		webResponse := web.WebResponse{
-			Code:   200,
-			Status: "Ok",
-			Data:   "pong",
+		webResponse := web.GeneralResponse{
+			Success: true,
 		}
 		helper.WriteToResponseBody(w, webResponse)
 	})
 
 	router.GET("/echo", func(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
-		webResponse := web.WebResponse{
-			Code:   200,
-			Status: "Ok",
-			Data:   r.URL.Query().Get("message"),
+		webResponse := web.GeneralResponse{
+			Success: true,
 		}
 		helper.WriteToResponseBody(w, webResponse)
 	})
